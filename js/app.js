@@ -1,6 +1,7 @@
 const produto = document.getElementById("produto");
 const quantidade = document.getElementById("quantidade");
 const listaDeProdutos = document.getElementById("lista-de-produtos");
+let somaDeValores = 0;
 
 function adicionar() {
   const produtoSelecionado = produto.value;
@@ -14,14 +15,32 @@ function adicionar() {
   const nomeProduto = produtoSelecionado.split(" - ")[0];
   const valorUnitario = produtoSelecionado.split("R$")[1];
   const valorTotal = valorUnitario * quantidadeSelecionada;
-  //const item = `${quantidadeSelecionada}x ${nomeProduto} R$${valorTotal}`;
 
-  const novoProduto = document.createElement("section");
-  novoProduto.classList.add("carrinho__produtos__produto");
-  novoProduto.innerHTML = `
-    <span class="texto-azul">${quantidadeSelecionada}x
-    </span> ${nomeProduto} <span class="texto-azul">R$${valorUnitario}</span>`;
-  listaDeProdutos.appendChild(novoProduto);
+  const carrinhoDeCompras = document.getElementById("lista-produtos");
+  carrinhoDeCompras.innerHTML =
+    carrinhoDeCompras.innerHTML +
+    `
+    <section class="carrinho__produtos__produto">
+          <span class="texto-azul">${quantidadeSelecionada}x
+          </span> ${nomeProduto} <span class="texto-azul">R$${valorUnitario}</span>
+    </section>
+  `;
+
+  somaDeValores += valorTotal;
+  limparCampo();
+
+  const ValorTotalNoCarrinho = document.getElementById("valor-total");
+  ValorTotalNoCarrinho.innerHTML = `R$${somaDeValores.toFixed(2)}`;
 }
 
-function limpar() {}
+function limpar() {
+  const carrinhoDeCompras = document.getElementById("lista-produtos");
+  carrinhoDeCompras.innerHTML = "";
+
+  const ValorTotalNoCarrinho = document.getElementById("valor-total");
+  ValorTotalNoCarrinho.innerHTML = `R$0,00`;
+}
+
+function limparCampo() {
+  quantidade.value = "";
+}
