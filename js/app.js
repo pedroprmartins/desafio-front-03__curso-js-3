@@ -27,7 +27,7 @@ function adicionar() {
   `;
 
   somaDeValores += valorTotal;
-  limparCampo();
+  quantidade.value = "";
 
   const ValorTotalNoCarrinho = document.getElementById("valor-total");
   ValorTotalNoCarrinho.innerHTML = `R$${somaDeValores.toFixed(2)}`;
@@ -39,8 +39,4 @@ function limpar() {
 
   const ValorTotalNoCarrinho = document.getElementById("valor-total");
   ValorTotalNoCarrinho.innerHTML = `R$0,00`;
-}
-
-function limparCampo() {
-  quantidade.value = "";
 }
