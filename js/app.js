@@ -3,6 +3,8 @@ const quantidade = document.getElementById("quantidade");
 const listaDeProdutos = document.getElementById("lista-de-produtos");
 let somaDeValores = 0;
 
+limpar();
+
 function adicionar() {
   const produtoSelecionado = produto.value;
   const quantidadeSelecionada = quantidade.value;
